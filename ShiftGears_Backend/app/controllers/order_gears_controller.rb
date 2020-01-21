@@ -1,0 +1,2 @@
+class OrderGearsController < ApplicationController
+end
