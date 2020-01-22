@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 
-export default class TopBarMenu extends Component {
+export default class TopMenu extends Component {
   state = { activeItem: 'home',
             open: false,
             username: "",
@@ -15,8 +15,8 @@ export default class TopBarMenu extends Component {
   }
 
 
-//   show = (dimmer) => () => this.setState({ dimmer, open: true })
-//   close = () => this.setState({ open: false })
+  show = (dimmer) => () => this.setState({ dimmer, open: true })
+  close = () => this.setState({ open: false })
 
   handleOrderClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -121,12 +121,11 @@ export default class TopBarMenu extends Component {
                   </ul>
               </form>
               
-//             </Modal.Description>
-//           </Modal.Content>
-//         </Modal>
-//       </div>
+            </Modal.Description>
+           </Modal.Content>
+         </Modal>
+       </div>
 
-          <SearchBar />
         </Menu>
       </Segment>
     )

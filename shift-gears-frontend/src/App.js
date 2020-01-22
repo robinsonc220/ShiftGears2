@@ -8,7 +8,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import Checkout from "../src/Checkout"
 import Gear from '../src/Gear';
 import { Table, Image, Header, Grid } from 'semantic-ui-react'
-
+import Menu from './Menu'
 
 
 
@@ -62,7 +62,7 @@ renderCart = () => { return this.state.cart.map(gear =>{
       <div className="App">
         {/* <HeaderContainer/> */}
         {/* <GearContainer cart={this.state.cart}/> */}
-        
+        <Menu />
         <Router>
           <Route path="/" exact render={(props) => <GearContainer {...props} renderAllGear={this.renderAllGear} renderCart={this.renderCart} addToCart={this.addToCart} cart={this.state.cart} allGear={this.state.allGear} total={this.state.total} />} />
           <Route path="/checkout" exact render={(props) => <Checkout {...props} cart={this.state.cart} total={this.state.total}/>} />
