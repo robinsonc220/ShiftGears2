@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Gear.destroy_all
+User.destroy_all
 
 g1 = Gear.create!(name: "Chucks", price: 40, description: "Dr. Jay", size: "11", img_url: "https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/1/4/143398_01.jpg" )
 g2 = Gear.create!(name: "Yeezy Slides", price: 90, description: "Ugly but comfy", size: "10", img_url: "https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/1/6/160140_01.jpg")
@@ -31,3 +32,9 @@ g21 = Gear.create!(name: "Timbs", price: 180, description: "YERR", size: "12.5",
 g22 = Gear.create!(name: "Uptowns", price: 100, description: "Classic", size: "13", img_url: "https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/8/0/803315_01.jpg")
 g23 = Gear.create!(name: "13's", price: 85, description: "Goat", size: "10", img_url: "https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/0/1/010084_01.jpg")
 g24 = Gear.create!(name: "Red Octobers", price: 200, description: "Rare", size: "11.5", img_url: "https://www.flightclub.com/media/catalog/product/cache/1/image/1600x1140/9df78eab33525d08d6e5fb8d27136e95/n/i/nike-air-yeezy-2-sp-red-october-red-red-090148_1.jpg")
+
+u1= User.create!(username: "jakarai", password: "jakarai")
+u2= User.create!(username: "conrad", password: "conrad")
+
+
+

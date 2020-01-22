@@ -12,7 +12,7 @@ const source = _.times(5, () => ({
   price: faker.finance.amount(0, 100, 2, '$'),
 }))
 
-export default class SearchExampleStandard extends Component {
+export default class SearchBar extends Component {
   state = initialState
 
   handleResultSelect = (e, { result }) => this.setState({ value: result.title })
@@ -50,7 +50,7 @@ export default class SearchExampleStandard extends Component {
             {...this.props}
           />
         </Grid.Column>
-        <Grid.Column width={10}>
+        {/* <Grid.Column width={10}>
           <Segment>
             <Header>State</Header>
             <pre style={{ overflowX: 'auto' }}>
@@ -60,8 +60,8 @@ export default class SearchExampleStandard extends Component {
             <pre style={{ overflowX: 'auto' }}>
               {JSON.stringify(source, null, 2)}
             </pre>
-          </Segment>
-        </Grid.Column>
+          </Segment> */}
+        {/* </Grid.Column> */}
       </Grid>
     )
   }

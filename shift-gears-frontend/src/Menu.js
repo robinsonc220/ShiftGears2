@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import SearchBar from './Search'
-import ShiftGearsLogo from '/Users/Jakarai/Documents/GitHub/shiftGear/shift_gears_frontend/src/shiftGearLogo.png'
+import ShiftGearsLogo from '/Users/Jakarai/MOD-4-Project/ShiftGears2/shift-gears-frontend/src/shiftGearLogo.png'
 import { Button, Header, Image, Modal, Menu, Segment } from 'semantic-ui-react'
+import axios from 'axios'
 
 
 
@@ -9,47 +10,56 @@ export default class TopBarMenu extends Component {
   state = { activeItem: 'home',
             open: false,
             username: "",
-            password: ""
+            password: "",
+            isLogInActive: false
   }
-  // const signIn = { username: data, password}
-// componentDidMount() {
-//   fetch(URL, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body:
-//   })
-//   .then(r => r.json())
-//   .then(data => {
-//     this.setStat
-//   })
-// }
+
 
   show = (dimmer) => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleOrderClick = (e, { name }) => this.setState({ activeItem: name })
 
-  handleLoginClick = () => {
-      
-  }
-  onUserNameChange = (event) => {
+
+  onChangeHandler = (event) => {
       this.setState({
-          username: event.target.value
+          [event.target.name]: event.target.value
       })
   }
-  onPasswordChange = (event) => {
-    this.setState({
-        password: event.target.value
+  submitHandler = (event) => {
+    event.preventDefault()
+    console.log(this.state)
+    fetch("http://localhost:3000/users", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+        isLogInActive: true
+      })
     })
-}
+    .then(r => console.log(r))
+  }
+  
+  logInHandler = (event) => {
+    event.preventDefault()
+    console.log(this.state)
+    fetch(`http://localhost:3000/users`)
+      .then(res => res.json())
+      .then(allUsers => {
+        // console.log(allUsers)
+      this.setState =  allUsers.find(function(user) {return user.username && user.password == this.state.username && this.state.password} )
+    })
+  }
+  
   
   
 
   render() {
-    const { activeItem } = this.state
-    const { open, dimmer } = this.state
+    const { activeItem, open, dimmer, username, password } = this.state
+    
 
     return (
       <Segment inverted>
@@ -60,19 +70,19 @@ export default class TopBarMenu extends Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name='Your Gear'
-            active={activeItem === 'Your Gear'}
+            name='Your Orders'
+            active={activeItem === 'Your Orders'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name='Login'
-            active={activeItem === 'Login'}
+            name='Your Account'
+            active={activeItem === 'Your Account'}
             onClick={this.handleItemClick}
           />
            <div>
         {/* <Button onClick={this.show(true)}>Default</Button> */}
-        <Button onClick={this.show('blurring')}>SignUp</Button>
-        <Button onClick={this.show('blurring')}>LogIn</Button>
+        {/* <Button onClick={this.show('blurring')}>SignUp</Button> */}
+        <Button onClick={this.show('blurring')}>LogIn/SignUp</Button>
 
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Please Log In Here</Modal.Header>
@@ -84,26 +94,29 @@ export default class TopBarMenu extends Component {
             />
             <Modal.Description>
               <Header>Enter Log-In</Header>
-              <form>
+              <form onSubmit= {this.submitHandler}>
                   <ul>
                       <li>
                           <label htmlFor="username"> Username:</label>
                           <input type="text"
+                                 name="username"
                                  placeholder="Type username here"
-                                 value={this.state.username}
-                                 onChange= {this.onUserNameChange} 
-                                 id="username" />
+                                 value={username}
+                                 onChange= {this.onChangeHandler} 
+                                  />
                       </li>
+                      
                       <li>
                           <label htmlFor="password"> Password:</label>
                           <input type="text"
+                                 name="password" 
                                  placeholder="Type password here"
-                                 value={this.state.password}
-                                 onChange= {this.onPasswordChange} 
-                                 id="password" />
+                                 value={password}
+                                 onChange= {this.onChangeHandler} 
+                                  />
                       </li>
                       <li>
-                          <input type="submit"  />
+                          <button type="submit"> Submit </button>
                       </li>
                   </ul>
               </form>
@@ -113,7 +126,7 @@ export default class TopBarMenu extends Component {
         </Modal>
       </div>
 
-          {/* <SearchBar /> */}
+          <SearchBar />
         </Menu>
       </Segment>
     )
