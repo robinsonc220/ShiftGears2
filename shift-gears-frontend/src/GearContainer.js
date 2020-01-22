@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Gear from '../src/Gear';
-import { Table, Image, Header } from 'semantic-ui-react'
+import { Table, Image, Header, Grid } from 'semantic-ui-react'
 
 export default class GearContainer extends React.Component{
     
@@ -18,7 +18,7 @@ componentDidMount() {
 }
  
 renderAllGear = () => { return this.state.allGear.map(gear => {
-    return  <div class="four wide column"> <Gear cart={this.state.cart} total={this.state.total} gear={gear} addToCart={this.addToCart} renderCart={this.renderCart}/>  </div>
+    return  <div class="four wide column"> <Gear cart={this.props.cart} total={this.state.total} gear={gear} addToCart={this.addToCart} renderCart={this.renderCart} renderCheckout={this.renderCheckout}/>  </div>
         }) 
     }  
 
@@ -45,6 +45,8 @@ renderCart = () => { return this.state.cart.map(gear =>{
       </Table.Row>
 })
 }
+
+
     
 render() {
     console.log(this.state.cart)

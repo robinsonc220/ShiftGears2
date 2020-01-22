@@ -27,18 +27,18 @@ return (
         </Card>
 
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>{this.props.gear.name}</Modal.Header>
+          <Modal.Header><h1>{this.props.gear.name}</h1></Modal.Header>
           <Modal.Content image>
             <Image
               wrapped
-              size='medium'
+              size='large'
               src={this.props.gear.img_url}
             />
             <Modal.Description>
-              <Header>${this.props.gear.price}</Header>
-              <p>
+              <Header><h2>${this.props.gear.price}</h2></Header>
+              <h4>
               Size: {this.props.gear.size}    
-              </p>
+              </h4>
               <p>
               {this.props.gear.description}  
               </p>
@@ -49,14 +49,7 @@ return (
             <Button color='black' onClick={this.close}>
               Close
             </Button>
-            {/* <Button
-              positive
-              icon='checkmark'
-              labelPosition='right'
-              content="Add to Cart"
-              onClick={console.log(this.props.gear)}>
-            </Button> */}
-            <Cart cart={this.props.cart} total={this.props.total} gear={this.props.gear} addToCart={this.props.addToCart} renderCart={this.props.renderCart}/>
+            <Cart cart={this.props.cart} total={this.props.total} gear={this.props.gear} addToCart={this.props.addToCart} renderCart={this.props.renderCart} renderCheckout={this.props.renderCheckout}/>
           </Modal.Actions>
         </Modal>
 
